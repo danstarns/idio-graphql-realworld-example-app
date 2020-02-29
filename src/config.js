@@ -1,5 +1,6 @@
-const { DEBUG } = process.env;
+const { DEBUG, SECRET } = process.env;
 
 module.exports = {
-    DEBUG
+    DEBUG,
+    SECRET
 };
