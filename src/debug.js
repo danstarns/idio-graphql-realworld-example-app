@@ -1,6 +1,6 @@
 const debug = require("debug");
 
-const prefix = "@idio-graphql:";
+const prefix = "@Conduit: ";
 
 /**
  * @param {string} namespace
