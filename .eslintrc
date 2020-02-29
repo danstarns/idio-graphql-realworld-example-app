@@ -5,14 +5,14 @@
         "prettier"
     ],
     "plugins": [
-        "prettier"
+        "prettier",
+        "import"
     ],
     "rules": {
         "prettier/prettier": [
             "error",
             {
                 "tabWidth": 4,
-                "arrowParens": "always",
                 "singleQuote": false
             }
         ],
