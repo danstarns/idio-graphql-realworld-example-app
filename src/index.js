@@ -1,7 +1,10 @@
 const api = require("./api/index.js");
 const graphql = require("./graphql/index.js");
+const debug = require("./debug.js")("APP");
 
 async function main() {
+    debug("Starting");
+
     try {
         const { execute } = graphql;
 
@@ -11,6 +14,8 @@ async function main() {
 
         process.exit(1);
     }
+
+    debug("Started 🚀");
 }
 
 main();
