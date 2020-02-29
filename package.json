@@ -4,8 +4,8 @@
   "description": "idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API.",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "start": "cross-env node -r dotenv/config ./src/index.js",
+    "dev": "cross-env nodemon -r dotenv/config ./src/index.js"
   },
   "repository": {
     "type": "git",
