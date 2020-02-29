@@ -31,6 +31,8 @@
   "dependencies": {
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "graphql-tag": "^2.10.3",
+    "idio-graphql": "^3.0.8",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
     "mongoose-unique-validator": "^2.0.3",
