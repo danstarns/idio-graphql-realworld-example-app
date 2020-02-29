@@ -1,0 +1,28 @@
+{
+  "name": "idio-graphql-realworld-example-app",
+  "version": "1.0.0",
+  "description": "idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danstarns/idio-graphql-realworld-example-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danstarns/idio-graphql-realworld-example-app/issues"
+  },
+  "homepage": "https://github.com/danstarns/idio-graphql-realworld-example-app#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1"
+  }
+}
