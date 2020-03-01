@@ -1,6 +1,6 @@
 # IdioGraphQL RealWorld Example App
 
-> ### idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc)
 
 
 # Docs
@@ -11,10 +11,7 @@ https://danstarns.github.io/idio-graphql/
 
 This codebase was created to demonstrate a Node.js server built with **idio-graphql** including CRUD operations, authentication, routing, pagination, and more. 
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
-
-> This server exposes [RealWorld](https://github.com/gothinkster/realworld) spec compliant rest endpoint's, where subsequent graphql executions are preformed. This will change when there is a suitable frontend [RealWorld](https://github.com/gothinkster/realworld) application, that executes graphql compliant requests. 
-
+There is a React frontend that works with this server [here](https://github.com/dostu/react-apollo-realworld-example-app)
 
 # How it works
 

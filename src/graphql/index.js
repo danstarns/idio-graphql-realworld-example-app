@@ -1,15 +1,22 @@
 const { combineNodes } = require("idio-graphql");
+const { ApolloServer } = require("apollo-server");
 const nodes = require("./nodes/index.js");
 const debug = require("../debug.js")("GraphQL: ");
+const { PORT } = require("../config.js");
 
-function start() {
-    debug("Building Schema...");
+const { typeDefs, resolvers } = combineNodes(nodes);
 
-    const graphql = combineNodes(nodes);
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
+});
 
-    debug("Completed");
+async function start() {
+    debug(`Starting Server`);
 
-    return graphql;
+    await server.listen(PORT);
+
+    debug(`Started on http://localhost:${PORT}/graphql`);
 }
 
 module.exports = { start };
