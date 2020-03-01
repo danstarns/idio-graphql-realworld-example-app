@@ -34,7 +34,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql-iso-date": "^3.6.1",
-    "graphql-tag": "^2.10.3",
     "graphql-voyager": "^1.0.0-rc.29",
     "idio-graphql": "^3.0.8",
     "mongoose": "^5.9.2"
