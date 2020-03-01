@@ -21,4 +21,20 @@ TBD
 
 # Getting started
 
-TBD
+> Node >= v12.0.0
+
+1. `npm install`
+2. Get or start a MongoDB server `MONGODB_URI`
+3. **Configure your environment**: Place a `./.env` file in the root of the project you can use the example provided:
+
+## .env.example
+
+```
+PORT=3000
+MONGODB_URI=mongodb://localhost/test
+DEBUG=@Conduit:*
+SECRET=supersecret
+NODE_ENV=develop
+```
+
+4. `npm run start`
