@@ -5,17 +5,33 @@ const User = new GraphQLNode({
     name: "User",
     typeDefs: gql`
         type User {
-            _id: ID!
-            createdAt: String!
-            updatedAt: String!
-            username: String!
-            email: String!
-            bio: String
+            id: ID!
             image: String
-            favorites: [Article]
-            following: [User]
-            hash: String
-            salt: String
+            username: String!
+            bio: String
+            email: String!
+            followedByViewer: Boolean!
+
+            articles(
+                first: Int
+                after: String
+                last: Int
+                before: String
+            ): ArticleConnection!
+
+            favoriteArticles(
+                first: Int
+                after: String
+                last: Int
+                before: String
+            ): ArticleConnection!
+
+            followers(
+                first: Int
+                after: String
+                last: Int
+                before: String
+            ): FollowersConnection!
         }
     `
 });
