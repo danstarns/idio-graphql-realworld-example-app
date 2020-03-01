@@ -1,6 +1,8 @@
 const { GraphQLNode } = require("idio-graphql");
 const gql = require("graphql-tag");
 const nodes = require("./nodes/index.js");
+const Query = require("./Query/index.js");
+const Mutation = require("./Mutation/index.js");
 
 const Article = new GraphQLNode({
     name: "Article",
@@ -118,7 +120,11 @@ const Article = new GraphQLNode({
 
             updateArticle(input: UpdateArticleInput!): UpdateArticlePayload
         }
-    `
+    `,
+    resolvers: {
+        Query,
+        Mutation
+    }
 });
 
 module.exports = Article;
