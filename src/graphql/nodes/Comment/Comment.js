@@ -7,9 +7,11 @@ const Comment = new GraphQLNode({
     typeDefs: gql`
         type Comment {
             id: ID!
+
             article: Article
             author: User
             body: String!
+
             createdAt: DateTime!
             updatedAt: DateTime!
         }
