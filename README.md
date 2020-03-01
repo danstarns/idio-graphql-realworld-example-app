@@ -1,5 +1,7 @@
 # IdioGraphQL RealWorld Example App
 
+> This is a work in progress
+
 > ### idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc)
 
 
