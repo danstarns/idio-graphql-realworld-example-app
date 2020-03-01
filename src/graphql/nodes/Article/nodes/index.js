@@ -1,3 +1,3 @@
-const Viewer = require("./Viewer.js");
+const Viewer = require("./Viewer/Viewer.js");
 
 module.exports = [Viewer];

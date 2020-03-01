@@ -1,0 +1,14 @@
+type Viewer {
+    feed(
+        first: Int
+        after: String
+        last: Int
+        before: String
+    ): ArticleConnection!
+
+    user: User!
+}
+
+type Query {
+    viewer: Viewer
+}
