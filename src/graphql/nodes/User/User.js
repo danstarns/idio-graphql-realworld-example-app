@@ -1,5 +1,7 @@
 const { GraphQLNode } = require("idio-graphql");
 const gql = require("graphql-tag");
+const Query = require("./Query/index.js");
+const Mutation = require("./Mutation/index.js");
 
 const User = new GraphQLNode({
     name: "User",
@@ -123,7 +125,8 @@ const User = new GraphQLNode({
             unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
             updateUser(input: UpdateUserInput!): UpdateUserPayload
         }
-    `
+    `,
+    resolvers: { Query, Mutation }
 });
 
 module.exports = User;
