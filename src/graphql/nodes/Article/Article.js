@@ -1,8 +1,10 @@
 const { GraphQLNode } = require("idio-graphql");
 const gql = require("graphql-tag");
+const nodes = require("./nodes/index.js");
 
 const Article = new GraphQLNode({
     name: "Article",
+    nodes,
     typeDefs: gql`
         type Article {
             id: ID!

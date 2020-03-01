@@ -32,6 +32,7 @@
     "apollo-server": "^2.10.1",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.3",
     "idio-graphql": "^3.0.8",
     "mongoose": "^5.9.2"
