@@ -5,12 +5,39 @@ const Comment = new GraphQLNode({
     name: "Comment",
     typeDefs: gql`
         type Comment {
-            _id: ID!
-            createdAt: String!
-            updatedAt: String!
-            body: String
-            author: User
+            id: ID!
             article: Article
+            author: User
+            body: String!
+            createdAt: DateTime!
+            updatedAt: DateTime!
+        }
+
+        input AddCommentInput {
+            articleId: ID!
+            body: String!
+            clientMutationId: String
+        }
+
+        type AddCommentPayload {
+            clientMutationId: String
+            comment: Comment
+            errors: [UserError!]!
+        }
+
+        input DeleteCommentInput {
+            id: ID!
+            clientMutationId: String
+        }
+
+        type DeleteCommentPayload {
+            clientMutationId: String
+            comment: Comment
+        }
+
+        type Mutation {
+            addComment(input: AddCommentInput!): AddCommentPayload
+            deleteComment(input: DeleteCommentInput!): DeleteCommentPayload
         }
     `
 });
