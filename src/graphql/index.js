@@ -1,8 +1,10 @@
 const { combineNodes } = require("idio-graphql");
-const { ApolloServer, gql } = require("apollo-server");
+const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
+const { express: voyagerMiddleware } = require("graphql-voyager/middleware");
 const nodes = require("./nodes/index.js");
 const debug = require("../debug.js")("GraphQL: ");
-const { PORT } = require("../config.js");
+const { PORT, NODE_ENV } = require("../config.js");
 const scalars = require("./scalars/index.js");
 
 const { typeDefs, resolvers } = combineNodes(nodes, {
@@ -29,12 +31,28 @@ const server = new ApolloServer({
     }
 });
 
+const app = express();
+
+server.applyMiddleware({ app });
+
+if (NODE_ENV === "develop") {
+    app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
+}
+
 async function start() {
-    debug(`Starting Server`);
+    return new Promise((resolve, reject) => {
+        debug(`Starting Server`);
 
-    await server.listen(PORT);
+        app.listen(PORT, err => {
+            if (err) {
+                return reject(err);
+            }
 
-    debug(`Started on http://localhost:${PORT}/graphql`);
+            debug(`Started on http://localhost:${PORT}/graphql`);
+
+            return resolve();
+        });
+    });
 }
 
 module.exports = { start };
