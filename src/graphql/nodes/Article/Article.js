@@ -10,17 +10,19 @@ const Article = new GraphQLNode({
     typeDefs: gql`
         type Article {
             id: ID!
+
             author: User!
             body: String!
             comments: [Comment!]!
-            createdAt: DateTime!
             description: String!
             favoritesCount: Int!
             slug: String!
             tagList: [String!]!
             title: String!
-            updatedAt: DateTime!
             viewerHasFavorited: Boolean!
+
+            updatedAt: DateTime!
+            createdAt: DateTime!
         }
 
         type ArticleEdge {
