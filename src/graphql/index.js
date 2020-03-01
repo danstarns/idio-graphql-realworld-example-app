@@ -28,27 +28,31 @@ const server = new ApolloServer({
     resolvers: {
         ...resolvers,
         Query: { ...resolvers.Query, tags: () => ["Array of tags TBA @TODO"] }
-    }
+    },
+    playground: NODE_ENV === "develop"
 });
 
 const app = express();
 
 server.applyMiddleware({ app });
 
-if (NODE_ENV === "develop") {
-    app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
-}
-
 async function start() {
     return new Promise((resolve, reject) => {
         debug(`Starting Server`);
+
+        if (NODE_ENV === "develop") {
+            app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
+
+            debug(`Started Playground @ http://localhost:${PORT}/graphql`);
+            debug(`Started Voyager @ http://localhost:${PORT}/voyager`);
+        }
 
         app.listen(PORT, err => {
             if (err) {
                 return reject(err);
             }
 
-            debug(`Started on http://localhost:${PORT}/graphql`);
+            debug(`Started @ http://localhost:${PORT}/graphql`);
 
             return resolve();
         });

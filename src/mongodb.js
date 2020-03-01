@@ -7,9 +7,12 @@ if (NODE_ENV === "develop") {
 }
 
 async function start() {
-    debug(`Connecting to: '${MONGODB_URI}'`);
+    debug(`Connecting '${MONGODB_URI}'`);
 
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(MONGODB_URI, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+    });
 
     debug("Connected");
 }
