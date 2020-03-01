@@ -2,18 +2,23 @@ const mongoose = require("mongoose");
 
 const User = new mongoose.Schema(
     {
+        // _id => id
+
+        image: String,
         username: {
             type: String,
+            required: true,
             index: true
         },
+        bio: String,
         email: {
             type: String,
+            required: true,
             index: true
         },
-        password_digest: { type: String, required: true },
-        bio: String,
-        image: String,
-        follows_count: Number
+        password: { type: String, required: true }
+
+        // followedByViewer ??
     },
     { timestamps: true }
 );
