@@ -36,7 +36,7 @@ const app = express();
 
 server.applyMiddleware({ app });
 
-async function start() {
+function start() {
     return new Promise((resolve, reject) => {
         debug(`Starting Server`);
 
