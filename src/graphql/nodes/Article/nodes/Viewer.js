@@ -18,7 +18,12 @@ const Viewer = new GraphQLNode({
         type Query {
             viewer: Viewer
         }
-    `
+    `,
+    resolvers: {
+        Query: {
+            viewer: () => true
+        }
+    }
 });
 
 module.exports = Viewer;
