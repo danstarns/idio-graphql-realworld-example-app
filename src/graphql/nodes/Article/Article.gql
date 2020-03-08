@@ -78,8 +78,6 @@ type Query {
     articles(
         first: Int
         after: String
-        last: Int
-        before: String
         tag: String
         authoredBy: String
         favoritedBy: String
