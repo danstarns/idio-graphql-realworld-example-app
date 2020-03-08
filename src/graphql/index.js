@@ -1,42 +1,14 @@
 const { combineNodes } = require("idio-graphql");
 const express = require("express");
-const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server-express");
 const { express: voyagerMiddleware } = require("graphql-voyager/middleware");
 const nodes = require("./nodes/index.js");
 const debug = require("../debug.js")("GraphQL: ");
 const { PORT, NODE_ENV } = require("../config.js");
-const scalars = require("./scalars/index.js");
+const appliances = require("./appliances/index.js");
+const { decodeJWT } = require("../util/index.js");
 
-const { typeDefs, resolvers } = combineNodes(nodes, {
-    scalars,
-    schemaGlobals: gql`
-        type PageInfo {
-            """
-            When paginating forwards, the cursor to continue.
-            """
-            endCursor: String
-
-            """
-            When paginating forwards, are there more items?
-            """
-            hasNextPage: Boolean!
-
-            """
-            When paginating backwards, are there more items?
-            """
-            hasPreviousPage: Boolean!
-
-            """
-            When paginating backwards, the cursor to continue.
-            """
-            startCursor: String
-        }
-
-        type Query {
-            tags: [String!]!
-        }
-    `
-});
+const { typeDefs, resolvers } = combineNodes(nodes, appliances);
 
 const server = new ApolloServer({
     typeDefs,
@@ -44,7 +16,24 @@ const server = new ApolloServer({
         ...resolvers,
         Query: { ...resolvers.Query, tags: () => ["Array of tags TBA @TODO"] }
     },
-    playground: NODE_ENV === "develop"
+    playground: NODE_ENV === "develop",
+    context: async ({ req, res }) => {
+        const authorization = req.header("authorization");
+
+        if (!authorization) {
+            return { user: null, req, res };
+        }
+
+        const [, jwt] = authorization.split("Token ");
+
+        const { sub } = await decodeJWT(jwt);
+
+        return {
+            req,
+            res,
+            user: sub
+        };
+    }
 });
 
 const app = express();
