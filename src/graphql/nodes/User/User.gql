@@ -1,42 +1,68 @@
 type User {
-    id: ID!
-    image: String
-    username: String!
-    bio: String
-    email: String!
-    followedByViewer: Boolean!
+  id: ID!
+  image: String
+  username: String!
+  bio: String
+  email: String!
+  followedByViewer: Boolean!
 
-    articles(
-        first: Int
-        after: String
-        last: Int
-        before: String
-    ): ArticleConnection!
+  articles(
+    """Returns the first _n_ elements from the list."""
+    first: Int
 
-    favoriteArticles(
-        first: Int
-        after: String
-        last: Int
-        before: String
-    ): ArticleConnection!
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
 
-    followers(
-        first: Int
-        after: String
-        last: Int
-        before: String
-    ): FollowersConnection!
+    """Returns the last _n_ elements from the list."""
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ArticleConnection!
+
+  favoriteArticles(
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ArticleConnection!
+
+  followers(
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): FollowersConnection!
+ 
 }
 
 input CreateUserInput {
     username: String!
     email: String!
     password: String!
-    clientMutationId: String
 }
 
 type CreateUserPayload {
-    clientMutationId: String
     errors: [UserError!]!
     user: Viewer
 }
@@ -44,11 +70,9 @@ type CreateUserPayload {
 input SignInUserInput {
     email: String!
     password: String!
-    clientMutationId: String
 }
 
 type SignInUserPayload {
-    clientMutationId: String
     errors: [UserError!]!
     token: String
     viewer: Viewer
@@ -56,33 +80,31 @@ type SignInUserPayload {
 
 input UnfollowUserInput {
     id: ID!
-    clientMutationId: String
 }
 
 type UnfollowUserPayload {
-    clientMutationId: String
     user: User
 }
 
 input UpdateUserInput {
-    email: String!
-    username: String!
-    bio: String
-    image: String
-    password: String
-    clientMutationId: String
+  email: String!
+  username: String!
+  bio: String
+  image: String
+  password: String
 }
 
 type UpdateUserPayload {
-    clientMutationId: String
-    errors: [UserError!]!
-    user: User
+  errors: [UserError!]!
+  user: User
 }
 
+
 type UserEdge {
-    cursor: String!
-    node: User
+  cursor: String!
+  node: User
 }
+
 
 type UserError {
     message: String!
