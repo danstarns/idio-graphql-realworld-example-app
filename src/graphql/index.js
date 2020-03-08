@@ -11,9 +11,24 @@ const { typeDefs, resolvers } = combineNodes(nodes, {
     scalars,
     schemaGlobals: gql`
         type PageInfo {
+            """
+            When paginating forwards, the cursor to continue.
+            """
             endCursor: String
+
+            """
+            When paginating forwards, are there more items?
+            """
             hasNextPage: Boolean!
+
+            """
+            When paginating backwards, are there more items?
+            """
             hasPreviousPage: Boolean!
+
+            """
+            When paginating backwards, the cursor to continue.
+            """
             startCursor: String
         }
 

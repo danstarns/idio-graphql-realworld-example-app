@@ -1,3 +1,3 @@
-const DateTime = require("./DateTime.js");
+const ISO8601DateTime = require("./ISO8601DateTime.js");
 
-module.exports = [DateTime];
+module.exports = [ISO8601DateTime];

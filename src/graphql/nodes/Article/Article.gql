@@ -9,8 +9,8 @@ type Article {
     tagList: [String!]!
     title: String!
     viewerHasFavorited: Boolean!
-    updatedAt: DateTime!
-    createdAt: DateTime!
+    updatedAt: ISO8601DateTime!
+    createdAt: ISO8601DateTime!
 }
 
 type ArticleEdge {
@@ -25,53 +25,44 @@ type ArticleConnection {
 
 type CreateArticlePayload {
     article: Article
-    clientMutationId: String
     errors: [UserError!]!
 }
 
 type DeleteArticlePayload {
     article: Article!
-    clientMutationId: String
 }
 
 input DeleteArticleInput {
     id: ID!
-    clientMutationId: String
 }
 
 input FavoriteArticleInput {
     id: ID!
-    clientMutationId: String
 }
 
 type FavoriteArticlePayload {
     article: Article
-    clientMutationId: String
 }
 
 input UpdateArticleInput {
-    id: ID!
-    title: String!
-    description: String!
-    body: String!
-    tagList: [String!]!
-    clientMutationId: String
+  id: ID!
+  title: String!
+  description: String!
+  body: String!
+  tagList: [String!]!
 }
 
 type UpdateArticlePayload {
     article: Article
-    clientMutationId: String
     errors: [UserError!]!
 }
 
 input UnfavoriteArticleInput {
     id: ID!
-    clientMutationId: String
 }
 
 type UnfavoriteArticlePayload {
     article: Article
-    clientMutationId: String
 }
 
 input CreateArticleInput {
@@ -79,7 +70,6 @@ input CreateArticleInput {
     description: String!
     body: String!
     tagList: [String!]!
-    clientMutationId: String
 }
 
 type Query {

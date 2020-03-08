@@ -1,9 +1,9 @@
 const { IdioScalar } = require("idio-graphql");
 const { GraphQLDateTime } = require("graphql-iso-date");
 
-const DateTime = new IdioScalar({
-    name: "DateTime",
+const ISO8601DateTime = new IdioScalar({
+    name: "ISO8601DateTime",
     resolver: GraphQLDateTime
 });
 
-module.exports = DateTime;
+module.exports = ISO8601DateTime;

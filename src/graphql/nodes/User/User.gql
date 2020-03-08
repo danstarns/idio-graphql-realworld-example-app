@@ -64,7 +64,7 @@ input CreateUserInput {
 
 type CreateUserPayload {
     errors: [UserError!]!
-    user: Viewer
+    user: User
 }
 
 input SignInUserInput {
@@ -106,7 +106,7 @@ type UserEdge {
 
 type UserError {
     message: String!
-    path: [String!]
+    path: String
 }
 
 type FollowersConnection {
@@ -118,11 +118,9 @@ type FollowersConnection {
 
 input FollowUserInput {
     id: ID!
-    clientMutationId: String
 }
 
 type FollowUserPayload {
-    clientMutationId: String
     user: User
 }
 

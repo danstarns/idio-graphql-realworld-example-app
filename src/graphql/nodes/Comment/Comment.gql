@@ -3,29 +3,25 @@ type Comment {
     article: Article
     author: User
     body: String!
-    createdAt: DateTime!
-    updatedAt: DateTime!
+    createdAt: ISO8601DateTime!
+    updatedAt: ISO8601DateTime!
 }
 
 input AddCommentInput {
     articleId: ID!
     body: String!
-    clientMutationId: String
 }
 
 type AddCommentPayload {
-    clientMutationId: String
     comment: Comment
     errors: [UserError!]!
 }
 
 input DeleteCommentInput {
     id: ID!
-    clientMutationId: String
 }
 
 type DeleteCommentPayload {
-    clientMutationId: String
     comment: Comment
 }
 
