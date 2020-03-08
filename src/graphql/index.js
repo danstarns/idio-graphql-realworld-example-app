@@ -2,6 +2,8 @@ const { combineNodes } = require("idio-graphql");
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { express: voyagerMiddleware } = require("graphql-voyager/middleware");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const nodes = require("./nodes/index.js");
 const debug = require("../debug.js")("GraphQL: ");
 const { PORT, NODE_ENV } = require("../config.js");
@@ -37,6 +39,9 @@ const server = new ApolloServer({
 });
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 server.applyMiddleware({ app });
 
