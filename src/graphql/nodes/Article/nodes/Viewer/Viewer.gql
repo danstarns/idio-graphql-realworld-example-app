@@ -1,12 +1,21 @@
 type Viewer {
-    feed(
-        first: Int
-        after: String
-        last: Int
-        before: String
-    ): ArticleConnection!
+  feed(
+    """Returns the first _n_ elements from the list."""
+    first: Int
 
-    user: User!
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ArticleConnection!
+  
+  user: User!
 }
 
 type Query {
