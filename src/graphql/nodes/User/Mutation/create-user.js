@@ -1,4 +1,5 @@
 const { User } = require("../../../../models/User.js");
+const { hashPassword } = require("../../../../util/index.js");
 
 async function createUser(root, args) {
     const {
@@ -19,9 +20,11 @@ async function createUser(root, args) {
         };
     }
 
+    const hash = await hashPassword(password);
+
     return {
         ...CreateUserPayload,
-        user: await User.create({ username, email, password })
+        user: await User.create({ username, email, password: hash })
     };
 }
 
