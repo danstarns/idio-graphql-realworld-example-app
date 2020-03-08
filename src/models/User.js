@@ -16,9 +16,11 @@ const User = new mongoose.Schema(
             required: true,
             index: true
         },
-        password: { type: String, required: true }
-
-        // followedByViewer ??
+        password: { type: String, required: true },
+        followers: { type: [mongoose.Schema.Types.ObjectId], ref: "User" },
+        favorites: {
+            articles: { type: mongoose.Schema.Types.ObjectId, ref: "Article" }
+        }
     },
     { timestamps: true }
 );
