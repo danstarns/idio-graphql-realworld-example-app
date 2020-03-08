@@ -99,12 +99,10 @@ type UpdateUserPayload {
   user: User
 }
 
-
 type UserEdge {
   cursor: String!
   node: User
 }
-
 
 type UserError {
     message: String!
