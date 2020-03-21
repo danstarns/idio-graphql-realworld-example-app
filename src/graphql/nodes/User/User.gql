@@ -20,37 +20,36 @@ type User {
     first: Int
     after: String
   ): FollowersConnection!
- 
 }
 
 input CreateUserInput {
-    username: String!
-    email: String!
-    password: String!
+  username: String!
+  email: String!
+  password: String!
 }
 
 type CreateUserPayload {
-    errors: [UserError!]!
-    user: User
+  errors: [UserError!]!
+  user: User
 }
 
 input SignInUserInput {
-    email: String!
-    password: String!
+  email: String!
+  password: String!
 }
 
 type SignInUserPayload {
-    errors: [UserError!]!
-    token: String
-    viewer: Viewer
+  errors: [UserError!]!
+  token: String
+  viewer: Viewer
 }
 
 input UnfollowUserInput {
-    id: ID!
+  id: ID!
 }
 
 type UnfollowUserPayload {
-    user: User
+  user: User
 }
 
 input UpdateUserInput {
@@ -72,33 +71,33 @@ type UserEdge {
 }
 
 type UserError {
-    message: String!
-    path: String
+  message: String!
+  path: String
 }
 
 type FollowersConnection {
-    edges: [UserEdge]
-    nodes: [User]
-    pageInfo: PageInfo!
-    totalCount: Int!
+  edges: [UserEdge]
+  nodes: [User]
+  pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 input FollowUserInput {
-    id: ID!
+  id: ID!
 }
 
 type FollowUserPayload {
-    user: User
+  user: User
 }
 
 type Query {
-    user(username: String!): User
+  user(username: String!): User
 }
 
 type Mutation {
-    createUser(input: CreateUserInput!): CreateUserPayload
-    followUser(input: FollowUserInput!): FollowUserPayload
-    signInUser(input: SignInUserInput!): SignInUserPayload
-    unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
-    updateUser(input: UpdateUserInput!): UpdateUserPayload
+  createUser(input: CreateUserInput!): CreateUserPayload
+  followUser(input: FollowUserInput!): FollowUserPayload
+  signInUser(input: SignInUserInput!): SignInUserPayload
+  unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
 }
