@@ -1,11 +1,5 @@
 type PageInfo {
-    """
-    When paginating forwards, the cursor to continue.
-    """
     endCursor: String
-    """
-    When paginating forwards, are there more items?
-    """
     hasNextPage: Boolean
 }
 
