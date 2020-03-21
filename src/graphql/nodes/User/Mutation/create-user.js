@@ -1,14 +1,17 @@
-const { User } = require("../../../../models/User.js");
+const { User } = require("../../../../models/index.js");
 const { hashPassword } = require("../../../../util/index.js");
 
 async function createUser(root, args) {
-    const CreateUserPayload = { errors: [], user: null };
     const {
         input: { username, email, password }
     } = args;
 
+    const CreateUserPayload = { errors: [], user: null };
+
     try {
-        if (await User.findOne({ username })) {
+        const existing = await User.findOne({ username });
+
+        if (existing) {
             throw new Error("Email has already been taken");
         }
 
@@ -18,10 +21,10 @@ async function createUser(root, args) {
             ...CreateUserPayload,
             user: await User.create({ username, email, password: hash })
         };
-    } catch (error) {
+    } catch ({ message, stack }) {
         return {
             ...CreateUserPayload,
-            errors: error
+            errors: [{ message, path: stack }]
         };
     }
 }
