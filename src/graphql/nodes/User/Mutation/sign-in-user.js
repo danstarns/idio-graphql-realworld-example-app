@@ -8,40 +8,36 @@ async function signInUser(root, args) {
 
     const SignInUserPayload = { errors: [], token: null, viewer: null };
 
-    const found = await User.findOne({ email }).lean();
+    try {
+        const user = await User.findOne({ email }).lean();
 
-    if (!found) {
+        if (!user) {
+            throw new Error("email or password is invalid");
+        }
+
+        const { password: hash } = user;
+
+        const valid = await comparePassword(password, hash);
+
+        if (!valid) {
+            throw new Error("email or password is invalid");
+        }
+
+        const token = await createJWT(user);
+
         return {
             ...SignInUserPayload,
-            errors: [
-                {
-                    message: "email or password is invalid",
-                    path: new Error().stack()
-                }
-            ]
+            token,
+            viewer: {
+                user
+            }
         };
-    }
-
-    const { hash } = found;
-
-    if (!(await comparePassword(password, hash))) {
+    } catch ({ message, stack }) {
         return {
             ...SignInUserPayload,
-            errors: [
-                {
-                    message: "email or password is invalid",
-                    path: new Error().stack()
-                }
-            ]
+            errors: [{ message, path: stack }]
         };
     }
-
-    const token = await createJWT(found);
-
-    return {
-        ...SignInUserPayload,
-        token
-    };
 }
 
 module.exports = signInUser;
