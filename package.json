@@ -20,7 +20,7 @@
   "homepage": "https://github.com/danstarns/idio-graphql-realworld-example-app#readme",
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
@@ -38,9 +38,9 @@
     "express": "^4.17.1",
     "graphql-iso-date": "^3.6.1",
     "graphql-voyager": "^1.0.0-rc.29",
-    "idio-graphql": "^3.1.0",
+    "idio-graphql": "^3.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.2",
+    "mongoose": "^5.9.5",
     "mongoose-paginate-v2": "^1.3.6"
   }
 }
