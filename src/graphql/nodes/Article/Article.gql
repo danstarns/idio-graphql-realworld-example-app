@@ -74,6 +74,8 @@ input CreateArticleInput {
 
 type Query {
     article(slug: String!): Article
+    tags: [String!]!
+    viewer: Viewer
 
     articles(
         first: Int
@@ -81,8 +83,6 @@ type Query {
         tag: String
         forUser: Boolean
     ): ArticleConnection!
-
-    tags: [String!]!
 }
 
 type Mutation {
