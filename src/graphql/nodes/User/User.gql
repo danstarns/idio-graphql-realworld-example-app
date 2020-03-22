@@ -1,103 +1,103 @@
 type User {
-  id: ID!
-  image: String
-  username: String!
-  bio: String
-  email: String!
-  followedByViewer: Boolean!
+    id: ID!
+    image: String
+    username: String!
+    bio: String
+    email: String!
+    followedByViewer: Boolean!  
 
-  articles(
-    first: Int
-    after: String
-  ): ArticleConnection!
+    articles(
+      first: Int
+      after: String
+    ): ArticleConnection! 
 
-  favoriteArticles(
-    first: Int
-    after: String
-  ): ArticleConnection!
+    favoriteArticles(
+      first: Int
+      after: String
+    ): ArticleConnection! 
 
-  followers(
-    first: Int
-    after: String
-  ): FollowersConnection!
+    followers(
+      first: Int
+      after: String
+    ): FollowersConnection!
 }
 
 input CreateUserInput {
-  username: String!
-  email: String!
-  password: String!
+    username: String!
+    email: String!
+    password: String!
 }
 
 type CreateUserPayload {
-  errors: [UserError!]!
-  user: User
+    errors: [UserError!]!
+    user: User
 }
 
 input SignInUserInput {
-  email: String!
-  password: String!
+    email: String!
+    password: String!
 }
 
 type SignInUserPayload {
-  errors: [UserError!]!
-  token: String
-  viewer: Viewer
+    errors: [UserError!]!
+    token: String
+    viewer: Viewer
 }
 
 input UnfollowUserInput {
-  id: ID!
+    id: ID!
 }
 
 type UnfollowUserPayload {
-  user: User
+    user: User
 }
 
 input UpdateUserInput {
-  email: String!
-  username: String!
-  bio: String
-  image: String
-  password: String
+    email: String!
+    username: String!
+    bio: String
+    image: String
+    password: String
 }
 
 type UpdateUserPayload {
-  errors: [UserError!]!
-  user: User
+    errors: [UserError!]!
+    user: User
 }
 
 type UserEdge {
-  cursor: String!
-  node: User
+    cursor: String!
+    node: User
 }
 
 type UserError {
-  message: String!
-  path: String
+    message: String!
+    path: String
 }
 
 type FollowersConnection {
-  edges: [UserEdge]
-  nodes: [User]
-  pageInfo: PageInfo!
-  totalCount: Int!
+    edges: [UserEdge]
+    nodes: [User]
+    pageInfo: PageInfo!
+    totalCount: Int!
 }
 
 input FollowUserInput {
-  id: ID!
+    id: ID!
 }
 
 type FollowUserPayload {
-  user: User
+    user: User
 }
 
 type Query {
-  user(username: String!): User
+    user(username: String!): User
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload
-  followUser(input: FollowUserInput!): FollowUserPayload
-  signInUser(input: SignInUserInput!): SignInUserPayload
-  unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
-  updateUser(input: UpdateUserInput!): UpdateUserPayload
+    createUser(input: CreateUserInput!): CreateUserPayload
+    followUser(input: FollowUserInput!): FollowUserPayload
+    signInUser(input: SignInUserInput!): SignInUserPayload
+    unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
+    updateUser(input: UpdateUserInput!): UpdateUserPayload
 }

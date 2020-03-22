@@ -45,11 +45,11 @@ type FavoriteArticlePayload {
 }
 
 input UpdateArticleInput {
-  id: ID!
-  title: String!
-  description: String!
-  body: String!
-  tagList: [String!]!
+    id: ID!
+    title: String!
+    description: String!
+    body: String!
+    tagList: [String!]!
 }
 
 type UpdateArticlePayload {

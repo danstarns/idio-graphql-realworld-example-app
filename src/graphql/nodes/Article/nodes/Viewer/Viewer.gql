@@ -1,10 +1,10 @@
 type Viewer {
-  feed(
-    first: Int
-    after: String
-  ): ArticleConnection!
+    feed(
+      first: Int
+      after: String
+    ): ArticleConnection!
   
-  user: User!
+    user: User!
 }
 
 type Query {
