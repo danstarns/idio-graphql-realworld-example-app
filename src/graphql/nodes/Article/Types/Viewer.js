@@ -7,20 +7,22 @@ const Viewer = new GraphQLType({
     typeDefs: gql`
         type Viewer {
             feed(first: Int, after: String): ArticleConnection!
-            user: User!
+            user: User
         }
     `,
     resolvers: {
-        feed: async (root, { input }, { user, injections: { execute } }) => {
-            const { first, after } = input;
-
+        feed: async (
+            root,
+            { first, after },
+            { user, injections: { execute } }
+        ) => {
             const { data, errors } = await execute(
                 gql`
                 {
                     articles(
                         first: ${first}
                         after: "${after}"
-                        forUser: true
+                        ${user ? `forUser: true` : ``}
                     ) {
                         edges {
                             id
