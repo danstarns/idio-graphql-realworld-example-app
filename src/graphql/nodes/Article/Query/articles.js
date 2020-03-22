@@ -1,8 +1,10 @@
 const { Article } = require("../../../../models/index.js");
 
-async function articles(root, { input }, { user }) {
-    const { first = 10, after = "1", tag, forUser, ids } = input;
-
+async function articles(
+    root,
+    { first = 10, after = "1", tag, forUser, ids },
+    { user }
+) {
     const query = {};
 
     if (tag) {
@@ -29,12 +31,10 @@ async function articles(root, { input }, { user }) {
     const { docs, hasNextPage } = await Article.paginate(query, pagination);
 
     return {
-        edges: [
-            docs.map(doc => ({
-                cursor: doc._id,
-                node: doc
-            }))
-        ],
+        edges: docs.map(doc => ({
+            cursor: doc._id,
+            node: doc
+        })),
         pageInfo: {
             endCursor: hasNextPage ? String(Number(after) + 1) : null,
             hasNextPage
