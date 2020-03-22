@@ -1,16 +1,7 @@
 const { Article } = require("../../../../models/index.js");
 
 async function articles(root, { input }, { user }) {
-    const { first = 10, after = "0", tag, forUser } = input;
-
-    const pagination = {
-        limit: Number(first) || 50,
-        page: after ? Number(after) + 1 : 1,
-        sort: {
-            createdAt: "descending"
-        },
-        lean: true
-    };
+    const { first = 10, after = "1", tag, forUser } = input;
 
     const query = {};
 
@@ -22,10 +13,16 @@ async function articles(root, { input }, { user }) {
         query.author = { $in: user.following };
     }
 
-    const { docs, totalPages, hasNextPage } = await Article.paginate(
-        query,
-        pagination
-    );
+    const pagination = {
+        limit: Number(first) || 50,
+        page: Number(after),
+        sort: {
+            createdAt: "descending"
+        },
+        lean: true
+    };
+
+    const { docs, hasNextPage } = await Article.paginate(query, pagination);
 
     return {
         edges: [
@@ -35,7 +32,7 @@ async function articles(root, { input }, { user }) {
             }))
         ],
         pageInfo: {
-            endCursor: String(totalPages),
+            endCursor: hasNextPage ? String(Number(after) + 1) : null,
             hasNextPage
         }
     };
