@@ -51,7 +51,7 @@ const Viewer = new GraphQLType({
                 throw new Error(errors[0].message);
             }
 
-            return data;
+            return data.articles;
         },
         user: ({ user: { _id } }) => User.findById(_id).lean()
     }

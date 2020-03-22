@@ -1,7 +1,7 @@
 const { Article } = require("../../../../models/index.js");
 
 async function articles(root, { input }, { user }) {
-    const { first = 10, after = "1", tag, forUser } = input;
+    const { first = 10, after = "1", tag, forUser, ids } = input;
 
     const query = {};
 
@@ -11,6 +11,10 @@ async function articles(root, { input }, { user }) {
 
     if (forUser) {
         query.author = { $in: user.following };
+    }
+
+    if (ids) {
+        query._id = { $in: ids };
     }
 
     const pagination = {

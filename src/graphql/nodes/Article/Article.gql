@@ -82,6 +82,7 @@ type Query {
         after: String
         tag: String
         forUser: Boolean
+        ids: [String]
     ): ArticleConnection!
 }
 
