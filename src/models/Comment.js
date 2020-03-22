@@ -7,7 +7,7 @@ const Comment = new mongoose.Schema(
 
         article: { type: mongoose.Schema.Types.ObjectId, ref: "Article" },
         author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        body: String
+        body: { type: String, required: true }
     },
     { timestamps: true }
 );
