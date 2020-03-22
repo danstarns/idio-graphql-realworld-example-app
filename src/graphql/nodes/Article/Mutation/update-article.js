@@ -1,3 +1,22 @@
-function updateArticle() {}
+const { Article } = require("../../../../models/index.js");
+
+async function updateArticle(root, { input }) {
+    const UpdateArticlePayload = { article: null, errors: [] };
+
+    const { id, ...updates } = input;
+
+    try {
+        const article = await Article.findByIdAndUpdate(id, { updates });
+
+        return {
+            ...UpdateArticlePayload,
+            article
+        };
+    } catch (error) {
+        return {
+            article: null
+        };
+    }
+}
 
 module.exports = updateArticle;

@@ -2,7 +2,3 @@ type PageInfo {
     endCursor: String
     hasNextPage: Boolean
 }
-
-type Query {
-    tags: [String!]!
-}

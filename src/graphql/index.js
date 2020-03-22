@@ -14,10 +14,7 @@ const { typeDefs, resolvers } = combineNodes(nodes, appliances);
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers: {
-        ...resolvers,
-        Query: { ...resolvers.Query, tags: () => ["Array of tags TBA @TODO"] }
-    },
+    resolvers,
     playground: NODE_ENV === "develop",
     context: async ({ req, res }) => {
         const authorization = req.header("authorization");

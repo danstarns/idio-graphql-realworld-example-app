@@ -18,7 +18,7 @@ const User = new mongoose.Schema(
             index: true
         },
         password: { type: String, required: true },
-        followers: { type: [mongoose.Schema.Types.ObjectId], ref: "User" },
+        following: { type: [mongoose.Schema.Types.ObjectId], ref: "User" },
         favorites: {
             articles: { type: [mongoose.Schema.Types.ObjectId], ref: "Article" }
         }

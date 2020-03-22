@@ -3,8 +3,6 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const Article = new mongoose.Schema(
     {
-        // _id => id
-
         author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         body: { type: String, required: true },
         description: { type: String, required: true },

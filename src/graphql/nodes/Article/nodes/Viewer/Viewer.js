@@ -19,8 +19,8 @@ async function feed(root, { first, after }) {
             author: { $in: followers.map(x => x._id) }
         },
         {
-            limit: Number(first),
-            page: Number(after) + 1,
+            limit: Number(first) || 50,
+            page: after ? Number(after) + 1 : 1,
             sort: {
                 createdAt: "descending"
             },

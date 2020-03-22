@@ -79,9 +79,10 @@ type Query {
         first: Int
         after: String
         tag: String
-        authoredBy: String
-        favoritedBy: String
+        forUser: Boolean
     ): ArticleConnection!
+
+    tags: [String!]!
 }
 
 type Mutation {
