@@ -3,9 +3,11 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const Comment = new mongoose.Schema(
     {
-        // _id => id
-
-        article: { type: mongoose.Schema.Types.ObjectId, ref: "Article" },
+        article: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Article",
+            index: true
+        },
         author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         body: { type: String, required: true }
     },
