@@ -3,11 +3,9 @@ const { User } = require("../../../../models/index.js");
 
 async function favoriteArticles(
     root,
-    { input },
+    { first, after },
     { user: userId, injections: { execute } }
 ) {
-    const { first, after } = input;
-
     const user = await User.findById(userId);
 
     const { data, errors } = await execute(
@@ -19,19 +17,21 @@ async function favoriteArticles(
                 ids: $ids
             ) {
                 edges {
-                    id
-                    slug
-                    title
-                    description
-                    favoritesCount
-                    createdAt
-                    viewerHasFavorited
-                    favoritesCount
-                    author {
-                      id
-                      username
-                      image
-                    }
+                   node {
+                        id
+                        slug
+                        title
+                        description
+                        favoritesCount
+                        createdAt
+                        viewerHasFavorited
+                        favoritesCount
+                        author {
+                            id
+                            username
+                            image
+                        }
+                   }
                 }
                 pageInfo {
                     endCursor
