@@ -2,14 +2,14 @@ const { Article } = require("../../../../models/index.js");
 
 async function deleteArticle(root, { input }) {
     try {
-        const user = await Article.findByIdAndRemove(input.id);
+        const article = await Article.findByIdAndRemove(input.id);
 
         return {
-            user
+            article
         };
     } catch (error) {
         return {
-            user: null
+            article: null
         };
     }
 }
