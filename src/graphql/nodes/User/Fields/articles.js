@@ -1,8 +1,10 @@
 const { gql } = require("apollo-server-express");
 
-async function articles(root, { input }, { user, injections: { execute } }) {
-    const { first, after } = input;
-
+async function articles(
+    root,
+    { first, after },
+    { user, injections: { execute } }
+) {
     const { data, errors } = await execute(
         gql`
         {
@@ -12,19 +14,21 @@ async function articles(root, { input }, { user, injections: { execute } }) {
                 forUser: true
             ) {
                 edges {
-                    id
-                    slug
-                    title
-                    description
-                    favoritesCount
-                    createdAt
-                    viewerHasFavorited
-                    favoritesCount
-                    author {
-                      id
-                      username
-                      image
-                    }
+                   node {
+                        id
+                        slug
+                        title
+                        description
+                        favoritesCount
+                        createdAt
+                        viewerHasFavorited
+                        favoritesCount
+                        author {
+                            id
+                            username
+                            image
+                        }
+                   }
                 }
                 pageInfo {
                     endCursor
