@@ -1,6 +1,6 @@
 const { Article, User } = require("../../../../models/index.js");
 
-async function favoriteArticle(root, { id }, { user }) {
+async function favoriteArticle(root, { input: { id } }, { user }) {
     try {
         const article = await Article.findById(id).lean();
 
@@ -9,7 +9,7 @@ async function favoriteArticle(root, { id }, { user }) {
         }
 
         await User.findByIdAndUpdate(user, {
-            $addToSet: { "favourites.articles": article._id }
+            $addToSet: { "favorites.articles": article._id }
         });
 
         return {
