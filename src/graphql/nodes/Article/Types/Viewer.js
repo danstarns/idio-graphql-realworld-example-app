@@ -25,18 +25,20 @@ const Viewer = new GraphQLType({
                         ${user ? `forUser: true` : ``}
                     ) {
                         edges {
-                            id
-                            slug
-                            title
-                            description
-                            favoritesCount
-                            createdAt
-                            viewerHasFavorited
-                            favoritesCount
-                            author {
-                              id
-                              username
-                              image
+                            node {
+                                id
+                                slug
+                                title
+                                description
+                                favoritesCount
+                                createdAt
+                                viewerHasFavorited
+                                favoritesCount
+                                author {
+                                  id
+                                  username
+                                  image
+                                }
                             }
                         }
                         pageInfo {
