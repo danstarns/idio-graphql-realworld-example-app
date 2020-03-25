@@ -8,7 +8,11 @@ function decodeJWT(token) {
                 return reject(err);
             }
 
-            return resolve(decoded);
+            const {
+                data: { sub }
+            } = decoded;
+
+            return resolve({ sub });
         });
     });
 }
