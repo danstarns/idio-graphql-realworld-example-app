@@ -7,7 +7,7 @@ const commentsLoader = new DataLoader(async articleIds => {
     }).lean();
 
     return articleIds.map(_id =>
-        comments.find(x => String(x.article) === String(_id))
+        comments.filter(x => String(x.article) === String(_id))
     );
 });
 
