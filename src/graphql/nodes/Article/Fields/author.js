@@ -1,5 +1,5 @@
-function author({ user }, args, { injections: { DataLoaders } }) {
-    return DataLoaders.authors.load(user);
+function author({ author: authorID }, args, { injections: { DataLoaders } }) {
+    return DataLoaders.authors.load(authorID);
 }
 
 module.exports = author;
