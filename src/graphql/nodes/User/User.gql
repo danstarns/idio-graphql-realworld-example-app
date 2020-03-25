@@ -16,10 +16,7 @@ type User {
       after: String
     ): ArticleConnection! 
 
-    followers(
-      first: Int
-      after: String
-    ): FollowersConnection!
+    followers: FollowersConnection!
 }
 
 input CreateUserInput {
@@ -76,9 +73,6 @@ type UserError {
 }
 
 type FollowersConnection {
-    edges: [UserEdge]
-    nodes: [User]
-    pageInfo: PageInfo!
     totalCount: Int!
 }
 
