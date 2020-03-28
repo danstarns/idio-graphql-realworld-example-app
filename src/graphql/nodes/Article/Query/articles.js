@@ -1,4 +1,4 @@
-const { Article } = require("../../../../models/index.js");
+const { Article, User } = require("../../../../models/index.js");
 
 async function articles(
     root,
@@ -6,6 +6,8 @@ async function articles(
     { user }
 ) {
     const query = {};
+
+    user = await User.findById(user);
 
     if (tag) {
         query.tagList = tag;
