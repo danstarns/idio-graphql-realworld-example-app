@@ -1,13 +1,15 @@
 const { User } = require("../../../../models/index.js");
 
-async function favoriteArticles(root, args, { user: userId }) {
+async function followedByViewer(root, args, { user: userId }) {
     const user = await User.findById(userId).lean();
 
-    if (user.favorites.articles.includes(root._id)) {
+    const userFollowers = user.following.map(x => x.toString());
+
+    if (userFollowers.includes(root._id.toString())) {
         return true;
     }
 
     return false;
 }
 
-module.exports = favoriteArticles;
+module.exports = followedByViewer;
