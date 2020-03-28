@@ -2,7 +2,7 @@ const { Article, User } = require("../../../../models/index.js");
 
 async function articles(
     root,
-    { first = 10, after = "1", tag, forUser, ids },
+    { first = 10, after = "1", tag, forUser, feed, ids },
     { user }
 ) {
     const query = {};
@@ -14,6 +14,10 @@ async function articles(
     }
 
     if (forUser) {
+        query.author = user._id;
+    }
+
+    if (feed) {
         query.author = { $in: user.following };
     }
 
