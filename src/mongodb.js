@@ -3,7 +3,9 @@ const debug = require("./debug.js")("MongoDB: ");
 const { MONGODB_URI, NODE_ENV } = require("./config.js");
 
 if (NODE_ENV === "develop") {
-    mongoose.set("debug", true);
+    mongoose.set("debug", (coll, method, query) => {
+        debug(coll, method, query);
+    });
 }
 
 async function start() {
