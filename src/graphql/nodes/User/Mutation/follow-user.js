@@ -1,8 +1,8 @@
 const { User } = require("../../../../models/index.js");
 
-async function followUser(root, { user: userToFollow }, { user: requester }) {
+async function followUser(root, { input: { id } }, { user: requester }) {
     try {
-        const user = await User.findById(userToFollow);
+        const user = await User.findById(id);
 
         if (!user) {
             throw new Error(/* user not found */);
@@ -11,7 +11,7 @@ async function followUser(root, { user: userToFollow }, { user: requester }) {
         const updatedUser = await User.findByIdAndUpdate(
             requester,
             {
-                $addToSet: { following: userToFollow }
+                $addToSet: { following: id }
             },
             { new: true }
         ).lean();

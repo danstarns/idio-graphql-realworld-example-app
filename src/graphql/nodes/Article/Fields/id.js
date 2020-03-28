@@ -1,5 +1,1 @@
-function id({ _id }) {
-    return _id;
-}
-
-module.exports = id;
+module.exports = ({ _id, id }) => _id || id;

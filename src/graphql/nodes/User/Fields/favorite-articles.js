@@ -6,6 +6,7 @@ async function favoriteArticles(
     { first, after },
     { user: userId, injections: { execute } }
 ) {
+    /** @todo inter-schema */
     const user = await User.findById(userId);
 
     const { data, errors } = await execute(
@@ -30,8 +31,8 @@ async function favoriteArticles(
                             id
                             username
                             image
-                        }
-                   }
+                        }                  
+                    }
                 }
                 pageInfo {
                     endCursor
@@ -40,7 +41,10 @@ async function favoriteArticles(
             }
         }
     `,
-        { variables: { ids: user.favorites.articles } }
+        {
+            variables: { ids: user.favorites.articles.map(String) },
+            context: { user: user._id }
+        }
     );
 
     if (errors && errors.length) {

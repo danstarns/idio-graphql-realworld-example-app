@@ -3,7 +3,7 @@ function viewer(root, args, { user }) {
         return null;
     }
 
-    return { user: { _id: user } };
+    return { user: { id: user } };
 }
 
 module.exports = viewer;
