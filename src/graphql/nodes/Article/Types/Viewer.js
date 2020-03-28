@@ -22,7 +22,7 @@ const Viewer = new GraphQLType({
                     articles(
                         first: ${first}
                         after: "${after}"
-                        ${user ? `forUser: true` : ``}
+                        ${user ? `feed: true` : ``}
                     ) {
                         edges {
                             node {
