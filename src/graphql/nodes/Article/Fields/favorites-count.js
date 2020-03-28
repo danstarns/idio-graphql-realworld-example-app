@@ -1,7 +1,7 @@
 const { User } = require("../../../../models/index.js");
 
-async function favoritesCount({ id }) {
-    const count = await User.count({ "favorites.articles": id });
+async function favoritesCount({ id, _id }) {
+    const count = await User.find({ "favorites.articles": id || _id }).count();
 
     return count;
 }
