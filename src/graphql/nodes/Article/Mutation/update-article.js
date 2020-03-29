@@ -5,7 +5,6 @@ async function updateArticle(root, { input }) {
 
     const { id, ...updates } = input;
 
-    console.log("updateArticle", updates);
     try {
         const article = await Article.findByIdAndUpdate(id, updates, {
             new: true
@@ -16,7 +15,6 @@ async function updateArticle(root, { input }) {
             article
         };
     } catch (error) {
-        console.error(error);
         return {
             article: null
         };
