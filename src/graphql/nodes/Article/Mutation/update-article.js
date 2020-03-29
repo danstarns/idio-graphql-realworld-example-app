@@ -6,9 +6,13 @@ async function updateArticle(root, { input }) {
     const { id, ...updates } = input;
 
     try {
-        const article = await Article.findByIdAndUpdate(id, updates, {
-            new: true
-        });
+        const article = await Article.findByIdAndUpdate(
+            id,
+            { $set: updates },
+            {
+                new: true
+            }
+        );
 
         return {
             ...UpdateArticlePayload,
