@@ -6,7 +6,7 @@ const appliances = require("../src/graphql/appliances/index.js");
 
 const { schema } = combineNodes(nodes, appliances);
 
-function test() {
+function graphql() {
     const server = new ApolloServer({
         schema,
         context: () => ({})
@@ -17,4 +17,4 @@ function test() {
     return client;
 }
 
-module.exports = test;
+module.exports = graphql;
