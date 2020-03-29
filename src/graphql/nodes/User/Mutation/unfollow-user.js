@@ -8,13 +8,9 @@ async function unfollowUser(root, { input: { id } }, { user: requester }) {
             throw new Error(/* user not found */);
         }
 
-        await User.findByIdAndUpdate(
-            requester,
-            {
-                $pull: { following: id }
-            },
-            { new: true }
-        ).lean();
+        await User.findByIdAndUpdate(requester, {
+            $pull: { following: id }
+        }).lean();
 
         return {
             user
