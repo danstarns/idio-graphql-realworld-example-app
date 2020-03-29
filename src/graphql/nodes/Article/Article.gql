@@ -78,8 +78,8 @@ type Query {
     viewer: Viewer
 
     articles(
-        first: Int
-        after: String
+        first: Int = 10
+        after: String = "1"
         tag: String
         forUser: Boolean
         feed: Boolean

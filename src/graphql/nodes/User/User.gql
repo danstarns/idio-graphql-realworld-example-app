@@ -7,13 +7,13 @@ type User {
     followedByViewer: Boolean!  
 
     articles(
-      first: Int
-      after: String
+      first: Int = 10
+      after: String = "1"
     ): ArticleConnection! 
 
     favoriteArticles(
-      first: Int
-      after: String
+      first: Int = 10
+      after: String = "1"
     ): ArticleConnection! 
 
     followers: FollowersConnection!

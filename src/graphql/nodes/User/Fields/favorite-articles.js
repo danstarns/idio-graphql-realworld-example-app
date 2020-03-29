@@ -20,18 +20,19 @@ async function favoriteArticles(
                 edges {
                    node {
                         id
-                        slug
-                        title
-                        description
-                        favoritesCount
-                        createdAt
-                        viewerHasFavorited
-                        favoritesCount
                         author {
                             id
                             username
                             image
-                        }                  
+                        }
+                        body
+                        description
+                        favoritesCount
+                        slug
+                        tagList
+                        title
+                        createdAt
+                        viewerHasFavorited                 
                     }
                 }
                 pageInfo {
