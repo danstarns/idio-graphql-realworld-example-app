@@ -1,3 +1,4 @@
+const { AuthenticationError } = require("apollo-server-express");
 const { comparePassword, createJWT } = require("../../../../util/index.js");
 const { User } = require("../../../../models/index.js");
 
@@ -12,7 +13,7 @@ async function signInUser(root, args) {
         const user = await User.findOne({ email }).lean();
 
         if (!user) {
-            throw new Error("email or password is invalid");
+            throw new AuthenticationError("unauthorized");
         }
 
         const { password: hash } = user;
@@ -20,7 +21,7 @@ async function signInUser(root, args) {
         const valid = await comparePassword(password, hash);
 
         if (!valid) {
-            throw new Error("email or password is invalid");
+            throw new AuthenticationError("unauthorized");
         }
 
         const token = await createJWT(user);
