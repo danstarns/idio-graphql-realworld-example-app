@@ -1,7 +1,6 @@
 ./node_modules
 ./test
 .eslintrc
-.env.example
 .gitignore
 .LICENSE.md
 nodemon.json

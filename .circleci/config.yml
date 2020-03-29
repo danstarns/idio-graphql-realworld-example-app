@@ -11,6 +11,7 @@ jobs:
           steps:
             - run: sudo npm install cross-env -g
             - run: npm install
+            - run: cp ./.env.example ./.env
             - run: npm test
 workflows:
   build-and-test:
