@@ -19,11 +19,15 @@
   },
   "homepage": "https://github.com/danstarns/idio-graphql-realworld-example-app#readme",
   "devDependencies": {
+    "apollo-server-testing": "^2.11.0",
+    "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
+    "mocha": "^7.1.1",
+    "mongodb-memory-server-global": "^6.5.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1"
