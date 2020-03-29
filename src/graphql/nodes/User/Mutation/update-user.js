@@ -1,11 +1,13 @@
 const { User } = require("../../../../models/index.js");
 const { hashPassword } = require("../../../../util/index.js");
 
-async function updateUser(root, { input }, { user: requester }) {
+async function updateUser(root, { input }) {
     const UpdateUserPayload = { errors: [], user: null };
 
     try {
-        const existing = await User.findById(requester).lean();
+        const existing = await User.findOne({
+            username: input.username
+        }).lean();
 
         if (!existing) {
             throw new Error(`User not found`);
