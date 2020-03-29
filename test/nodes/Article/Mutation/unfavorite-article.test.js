@@ -34,6 +34,39 @@ describe("Article.Mutation.unfavoriteArticle", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const UnfavoriteArticleInput = {
+            id: new mongoose.Types.ObjectId().toString()
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($UnfavoriteArticleInput: UnfavoriteArticleInput!) {
+                    unfavoriteArticle(input: $UnfavoriteArticleInput) {
+                        article {
+                            id
+                            body
+                            title
+                        }
+                    }
+                }
+            `,
+            variables: {
+                UnfavoriteArticleInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should unFavorite a article", async () => {
         const user = await User.create({
             image: "http://cat.com",

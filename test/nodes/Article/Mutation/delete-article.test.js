@@ -34,6 +34,37 @@ describe("Article.Mutation.deleteArticle", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const DeleteArticleInput = {
+            id: new mongoose.Types.ObjectId().toString()
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($DeleteArticleInput: DeleteArticleInput!) {
+                    deleteArticle(input: $DeleteArticleInput) {
+                        article {
+                            id
+                        }
+                    }
+                }
+            `,
+            variables: {
+                DeleteArticleInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should delete a article", async () => {
         const user = await User.create({
             image: "http://cat.com",

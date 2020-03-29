@@ -7,7 +7,6 @@ const graphql = require("../../../graphql.js");
 
 describe("Article.Mutation.createArticle", () => {
     let mongo;
-    let mutate;
 
     before(async () => {
         mongo = new MongoMemoryServer();
@@ -21,20 +20,6 @@ describe("Article.Mutation.createArticle", () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-
-        const user = await User.create({
-            image: "http://cat.com",
-            username: "Tester",
-            bio: "Testing always...",
-            email: "test@test.com",
-            password: "secretHASH",
-            following: [],
-            favorites: {
-                articles: []
-            }
-        });
-
-        ({ mutate } = graphql({ user: user._id.toString() }));
     });
 
     after(async () => {
@@ -49,7 +34,63 @@ describe("Article.Mutation.createArticle", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const CreateArticleInput = {
+            title: "test",
+            description: "description",
+            body: "som random article",
+            tagList: ["beer"]
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($CreateArticleInput: CreateArticleInput!) {
+                    createArticle(input: $CreateArticleInput) {
+                        article {
+                            id
+                            title
+                            description
+                            body
+                            tagList
+                        }
+                        errors {
+                            message
+                            path
+                        }
+                    }
+                }
+            `,
+            variables: {
+                CreateArticleInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should create a article", async () => {
+        const user = await User.create({
+            image: "http://cat.com",
+            username: "Tester",
+            bio: "Testing always...",
+            email: "test@test.com",
+            password: "secretHASH",
+            following: [],
+            favorites: {
+                articles: []
+            }
+        });
+
+        const { mutate } = graphql({ user: user._id.toString() });
+
         const CreateArticleInput = {
             title: "test",
             description: "description",

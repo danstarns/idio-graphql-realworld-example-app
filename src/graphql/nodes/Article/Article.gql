@@ -88,15 +88,15 @@ type Query {
 }
 
 type Mutation {
-    createArticle(input: CreateArticleInput!): CreateArticlePayload
-    deleteArticle(input: DeleteArticleInput!): DeleteArticlePayload
-    updateArticle(input: UpdateArticleInput!): UpdateArticlePayload
+    createArticle(input: CreateArticleInput!): CreateArticlePayload @Auth(input: {required: true})
+    deleteArticle(input: DeleteArticleInput!): DeleteArticlePayload @Auth(input: {required: true})
+    updateArticle(input: UpdateArticleInput!): UpdateArticlePayload @Auth(input: {required: true})
 
     favoriteArticle(
         input: FavoriteArticleInput!
-    ): FavoriteArticlePayload
+    ): FavoriteArticlePayload @Auth(input: {required: true})
 
     unfavoriteArticle(
         input: UnfavoriteArticleInput!
-    ): UnfavoriteArticlePayload
+    ): UnfavoriteArticlePayload @Auth(input: {required: true})
 }

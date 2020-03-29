@@ -34,6 +34,43 @@ describe("Article.Mutation.updateArticle", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const UpdateArticleInput = {
+            id: new mongoose.Types.ObjectId().toString(),
+            title: "article.title",
+            description: "article.description",
+            body: "I love beer soo much",
+            tagList: ["tag"]
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($UpdateArticleInput: UpdateArticleInput!) {
+                    updateArticle(input: $UpdateArticleInput) {
+                        article {
+                            id
+                            body
+                            title
+                        }
+                    }
+                }
+            `,
+            variables: {
+                UpdateArticleInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should update a article", async () => {
         const user = await User.create({
             image: "http://cat.com",
