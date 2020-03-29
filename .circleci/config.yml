@@ -9,7 +9,7 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install cross-env -g
+            - run: sudo npm install cross-env -g
             - run: npm install
             - run: npm test
 workflows:

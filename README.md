@@ -1,5 +1,5 @@
 # IdioGraphQL RealWorld Example App
-[![CircleCI](https://circleci.com/gh/danstarns/idio-graphql/tree/master.svg?style=svg)](https://circleci.com/gh/danstarns/idio-graphql-realworld-example-app/tree/master.svg?style=svg)
+[![CircleCI](https://circleci.com/gh/danstarns/idio-graphql-realworld-example-app/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/danstarns/idio-graphql-realworld-example-app?branch=master)
 [![CircleCI](https://img.shields.io/github/license/danstarns/idio-graphql)](https://github.com/danstarns/idio-graphql-realworld-example-app/blob/master/LICENSE)
 
 > ### idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, integration test etc)
