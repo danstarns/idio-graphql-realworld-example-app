@@ -6,10 +6,10 @@ const appliances = require("../src/graphql/appliances/index.js");
 
 const { schema } = combineNodes(nodes, appliances);
 
-function graphql() {
+function graphql({ user } = {}) {
     const server = new ApolloServer({
         schema,
-        context: () => ({})
+        context: () => ({ user })
     });
 
     const client = createTestClient(server);
