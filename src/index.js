@@ -6,7 +6,7 @@ async function main() {
     debug("Starting");
 
     try {
-        await mongodb.start();
+        await mongodb.connect();
 
         await graphql.start();
     } catch (error) {

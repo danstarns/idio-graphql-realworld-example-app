@@ -3,12 +3,14 @@ const debug = require("./debug.js")("MongoDB: ");
 const { MONGODB_URI, NODE_ENV } = require("./config.js");
 
 if (NODE_ENV === "develop") {
-    mongoose.set("debug", (coll, method, query) => {
-        debug(coll, method, query);
+    mongoose.set("debug", (collection, method, query) => {
+        debug(`db.${collection}.${method}(${JSON.stringify(query)})`);
     });
 }
 
-async function start() {
+mongoose.set("useCreateIndex", true);
+
+async function connect() {
     debug(`Connecting '${MONGODB_URI}'`);
 
     await mongoose.connect(MONGODB_URI, {
@@ -19,4 +21,4 @@ async function start() {
     debug("Connected");
 }
 
-module.exports = { start };
+module.exports = { connect };
