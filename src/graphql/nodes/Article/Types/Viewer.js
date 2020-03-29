@@ -25,6 +25,7 @@ const Viewer = new GraphQLType({
                         ${user ? `feed: true` : ``}
                     ) {
                         edges {
+                            cursor
                             node {
                                 id
                                 slug
@@ -57,14 +58,8 @@ const Viewer = new GraphQLType({
 
             return data.articles;
         },
-        user: ({ user: { _id, id } }) => {
-            if (_id) {
-                return User.findById(_id).lean();
-            }
-
-            if (id) {
-                return User.findById(id).lean();
-            }
+        user: ({ user: { id } }) => {
+            return User.findById(id).lean();
         }
     }
 });
