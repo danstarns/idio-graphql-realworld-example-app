@@ -4,10 +4,10 @@ const { User } = require("../../../../models/index.js");
 async function favoriteArticles(
     root,
     { first, after },
-    { user: userId, injections: { execute } }
+    { injections: { execute } }
 ) {
     /** @todo inter-schema */
-    const user = await User.findById(userId);
+    const user = await User.findById(root._id);
 
     const { data, errors } = await execute(
         gql`
@@ -42,8 +42,8 @@ async function favoriteArticles(
         }
     `,
         {
-            variables: { ids: user.favorites.articles.map(String) },
-            context: { user: user._id }
+            variables: { ids: user.favorites.articles.map(x => x.toString()) },
+            context: { user: user._id.toString() }
         }
     );
 
