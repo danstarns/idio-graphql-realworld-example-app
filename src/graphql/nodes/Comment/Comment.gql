@@ -26,6 +26,6 @@ type DeleteCommentPayload {
 }
 
 type Mutation {
-    addComment(input: AddCommentInput!): AddCommentPayload
-    deleteComment(input: DeleteCommentInput!): DeleteCommentPayload
+    addComment(input: AddCommentInput!): AddCommentPayload @Auth(input: {required: true})
+    deleteComment(input: DeleteCommentInput!): DeleteCommentPayload @Auth(input: {required: true})
 }

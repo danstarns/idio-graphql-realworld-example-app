@@ -34,6 +34,37 @@ describe("Comment.Mutation.deleteComment", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const DeleteCommentInput = {
+            id: new mongoose.Types.ObjectId().toString()
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($DeleteCommentInput: DeleteCommentInput!) {
+                    deleteComment(input: $DeleteCommentInput) {
+                        comment {
+                            id
+                        }
+                    }
+                }
+            `,
+            variables: {
+                DeleteCommentInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should delete a comment", async () => {
         const user = await User.create({
             image: "http://cat.com",

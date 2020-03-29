@@ -34,6 +34,38 @@ describe("Comment.Mutation.addComment", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const AddCommentInput = {
+            articleId: new mongoose.Types.ObjectId().toString(),
+            body: "Cool post!"
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($AddCommentInput: AddCommentInput!) {
+                    addComment(input: $AddCommentInput) {
+                        comment {
+                            id
+                        }
+                    }
+                }
+            `,
+            variables: {
+                AddCommentInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should add a comment", async () => {
         const user = await User.create({
             image: "http://cat.com",
