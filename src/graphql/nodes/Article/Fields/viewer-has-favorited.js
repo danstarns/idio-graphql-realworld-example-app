@@ -14,7 +14,7 @@ async function viewerHasFavorited({ id, _id }, args, { user: userId }) {
     let includes_Id;
 
     if (id) {
-        articles.includes(id);
+        includesId = articles.includes(id);
     }
 
     if (_id) {
