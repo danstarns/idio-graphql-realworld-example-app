@@ -5,18 +5,18 @@ async function updateArticle(root, { input }) {
 
     const { id, ...updates } = input;
 
+    console.log("updateArticle", updates);
     try {
-        const article = await Article.findByIdAndUpdate(
-            id,
-            { $set: { updates } },
-            { new: true }
-        );
+        const article = await Article.findByIdAndUpdate(id, updates, {
+            new: true
+        });
 
         return {
             ...UpdateArticlePayload,
             article
         };
     } catch (error) {
+        console.error(error);
         return {
             article: null
         };
