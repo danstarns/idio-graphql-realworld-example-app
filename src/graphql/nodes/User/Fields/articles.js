@@ -1,10 +1,6 @@
 const { gql } = require("apollo-server-express");
 
-async function articles(
-    root,
-    { first, after },
-    { user, injections: { execute } }
-) {
+async function articles(root, { first, after }, { injections: { execute } }) {
     const { data, errors } = await execute(
         gql`
         {
@@ -37,7 +33,7 @@ async function articles(
             }
         }
     `,
-        { context: { user } }
+        { context: { user: root._id } }
     );
 
     if (errors && errors.length) {
