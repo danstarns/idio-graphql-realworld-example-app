@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  conduit_mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+  conduit_server:
+    build: .
+    depends_on:
+      - conduit_mongo
+    ports:
+      - 3000:3000

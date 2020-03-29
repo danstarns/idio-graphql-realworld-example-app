@@ -1,7 +1,7 @@
 {
   "name": "idio-graphql-realworld-example-app",
   "version": "1.0.0",
-  "description": "idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, etc)",
+  "description": "Node.js server built with idio-graphql including CRUD operations, authentication, routing, pagination, and more.",
   "main": "index.js",
   "scripts": {
     "start": "cross-env node -r dotenv/config ./src/index.js",
@@ -12,9 +12,28 @@
     "type": "git",
     "url": "git+https://github.com/danstarns/idio-graphql-realworld-example-app.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "graphql",
+    "graphql-api",
+    "nodejs",
+    "node-js",
+    "apollo-server",
+    "idio-graphql",
+    "moleculer",
+    "modules",
+    "modularize",
+    "microservices",
+    "microservice",
+    "gateway",
+    "modular",
+    "realworld",
+    "example"
+  ],
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "author": "danielstarns@hotmail.com",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/danstarns/idio-graphql-realworld-example-app/issues"
   },
