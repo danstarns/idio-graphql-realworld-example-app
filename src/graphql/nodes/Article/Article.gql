@@ -90,6 +90,7 @@ type Query {
 type Mutation {
     createArticle(input: CreateArticleInput!): CreateArticlePayload
     deleteArticle(input: DeleteArticleInput!): DeleteArticlePayload
+    updateArticle(input: UpdateArticleInput!): UpdateArticlePayload
 
     favoriteArticle(
         input: FavoriteArticleInput!
@@ -98,6 +99,4 @@ type Mutation {
     unfavoriteArticle(
         input: UnfavoriteArticleInput!
     ): UnfavoriteArticlePayload
-
-    updateArticle(input: UpdateArticleInput!): UpdateArticlePayload
 }
