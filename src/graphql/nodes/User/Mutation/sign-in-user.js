@@ -25,11 +25,16 @@ async function signInUser(root, args) {
 
         const token = await createJWT(user);
 
+        const { _id, ...restOfUser } = user;
+
         return {
             ...SignInUserPayload,
             token,
             viewer: {
-                user
+                user: {
+                    id: user._id,
+                    ...restOfUser
+                }
             }
         };
     } catch ({ message, stack }) {
