@@ -9,6 +9,7 @@ if (NODE_ENV === "develop") {
 }
 
 mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 
 async function connect() {
     debug(`Connecting '${MONGODB_URI}'`);
