@@ -90,8 +90,8 @@ type Query {
 
 type Mutation {
     createUser(input: CreateUserInput!): CreateUserPayload
-    followUser(input: FollowUserInput!): FollowUserPayload
     signInUser(input: SignInUserInput!): SignInUserPayload
-    unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload
-    updateUser(input: UpdateUserInput!): UpdateUserPayload
+    followUser(input: FollowUserInput!): FollowUserPayload @Auth(input: {required: true})
+    unfollowUser(input: UnfollowUserInput!): UnfollowUserPayload @Auth(input: {required: true})
+    updateUser(input: UpdateUserInput!): UpdateUserPayload @Auth(input: {required: true})
 }

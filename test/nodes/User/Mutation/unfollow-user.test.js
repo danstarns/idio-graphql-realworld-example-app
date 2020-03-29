@@ -34,6 +34,39 @@ describe("User.Mutation.unfollowUser", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
+    it("should throw unauthorized if no user in context", async () => {
+        const { mutate } = graphql();
+
+        const UnfollowUserInput = {
+            id: new mongoose.Types.ObjectId().toString()
+        };
+
+        const { errors } = await mutate({
+            mutation: gql`
+                mutation($UnfollowUserInput: UnfollowUserInput!) {
+                    unfollowUser(input: $UnfollowUserInput) {
+                        user {
+                            id
+                            username
+                            email
+                        }
+                    }
+                }
+            `,
+            variables: {
+                UnfollowUserInput
+            }
+        });
+
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
+
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
+    });
+
     it("should unfollow a user", async () => {
         const user = await User.create({
             image: "http://cat.com",

@@ -34,20 +34,21 @@ describe("User.Mutation.updateUser", () => {
         await Promise.all(collections.map(collection => collection.drop()));
     });
 
-    it("should throw user not found", async () => {
-        const UpdateUserInput = {
-            email: "netemail@test.com",
-            username: "Username"
-        };
-
+    it("should throw unauthorized if no user in context", async () => {
         const { mutate } = graphql();
 
-        const { data, errors } = await mutate({
+        const UpdateUserInput = {
+            email: "netemail@test.com",
+            username: "user"
+        };
+
+        const { errors } = await mutate({
             mutation: gql`
                 mutation($UpdateUserInput: UpdateUserInput!) {
                     updateUser(input: $UpdateUserInput) {
-                        errors {
-                            message
+                        user {
+                            id
+                            email
                         }
                     }
                 }
@@ -57,9 +58,13 @@ describe("User.Mutation.updateUser", () => {
             }
         });
 
-        expect(errors).to.equal(undefined);
+        expect(errors)
+            .to.be.a("array")
+            .lengthOf(1);
 
-        expect(data.updateUser.errors[0].message).to.equal("User not found");
+        const [{ message }] = errors;
+
+        expect(message).to.equal("unauthorized");
     });
 
     it("should update a user", async () => {

@@ -9,10 +9,6 @@ async function updateUser(root, { input }) {
             username: input.username
         }).lean();
 
-        if (!existing) {
-            throw new Error(`User not found`);
-        }
-
         if (input.password) {
             input.password = await hashPassword(input.password);
         }
