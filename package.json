@@ -1,7 +1,7 @@
 {
   "name": "idio-graphql-realworld-example-app",
   "version": "1.0.0",
-  "description": "Node.js server built with idio-graphql including CRUD operations, authentication, routing, pagination, and more.",
+  "description": "Node.js GraphQL example server built with modules, authentication, pagination, and more.",
   "main": "index.js",
   "scripts": {
     "start": "cross-env node -r dotenv/config ./src/index.js",

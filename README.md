@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/danstarns/idio-graphql-realworld-example-app/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/danstarns/idio-graphql-realworld-example-app?branch=master)
 [![CircleCI](https://img.shields.io/github/license/danstarns/idio-graphql)](https://github.com/danstarns/idio-graphql-realworld-example-app/blob/master/LICENSE)
 
-> ### idio-graphql codebase containing real world examples (CRUD, auth, advanced patterns, integration test etc)
+> ### Node.js GraphQL example server built with modules, authentication, pagination, and more.
 
 
 # Docs
@@ -11,7 +11,7 @@ https://danstarns.github.io/idio-graphql/
 
 # About
 
-This codebase was created to demonstrate a Node.js server built with [**idio-graphql**](https://danstarns.github.io/idio-graphql/) including CRUD operations, authentication, routing, pagination, and more. 
+This codebase was created to demonstrate a Node.js server built with [**idio-graphql**](https://danstarns.github.io/idio-graphql/) including modules, authentication, pagination, and more. 
 
 There is a React frontend that works with this server [here](https://github.com/dostu/react-apollo-realworld-example-app)
 
