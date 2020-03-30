@@ -6,7 +6,6 @@ async function favoriteArticles(
     { first, after },
     { injections: { execute } }
 ) {
-    /** @todo inter-schema */
     const user = await User.findById(root._id);
 
     const { data, errors } = await execute(
