@@ -2,6 +2,7 @@ const { GraphQLNode } = require("idio-graphql");
 const path = require("path");
 const Mutation = require("./Mutation/index.js");
 const Fields = require("./Fields/index.js");
+const DataLoaders = require("./DataLoaders/index.js");
 
 const Comment = new GraphQLNode({
     name: "Comment",
@@ -9,6 +10,9 @@ const Comment = new GraphQLNode({
     resolvers: {
         Mutation,
         Fields
+    },
+    injections: {
+        DataLoaders
     }
 });
 

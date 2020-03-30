@@ -1,7 +1,9 @@
-const { User } = require("../../../../models/index.js");
-
-async function author({ author: authorID }) {
-    return User.findById(authorID);
+async function author(
+    { author: authorID },
+    args,
+    { injections: { DataLoaders } }
+) {
+    return DataLoaders.authors.load(authorID);
 }
 
 module.exports = author;
