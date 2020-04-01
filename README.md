@@ -286,9 +286,7 @@ type Viewer {
 }
 ```
 
-## Testing
-
----
+# Testing
 
 1. [`mocha`](https://www.npmjs.com/package/mocha)
 2. [`chai`](https://www.npmjs.com/package/chai)
