@@ -1,13 +1,10 @@
 const { gql } = require("apollo-server-express");
-const { User } = require("../../../../models/index.js");
 
 async function favoriteArticles(
     root,
     { first, after },
     { injections: { execute } }
 ) {
-    const user = await User.findById(root.id);
-
     const { data, errors } = await execute(
         gql`
        query ($ids: [String]) {
@@ -42,8 +39,8 @@ async function favoriteArticles(
         }
     `,
         {
-            variables: { ids: user.favorites.articles.map(x => x.toString()) },
-            context: { user: user.id }
+            variables: { ids: root.favorites.articles.map(x => x.toString()) },
+            context: { user: root.id }
         }
     );
 

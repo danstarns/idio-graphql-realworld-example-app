@@ -1,9 +1,7 @@
 const { User } = require("../../../../models/index.js");
 
-async function followers(root, args, { injections: { DataLoaders } }) {
-    const found = await DataLoaders.users.load(root.id);
-
-    const totalCount = await User.countDocuments({ following: found.id });
+async function followers(root) {
+    const totalCount = await User.countDocuments({ following: root.id });
 
     return { totalCount };
 }

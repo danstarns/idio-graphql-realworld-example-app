@@ -8,8 +8,6 @@ async function favoriteArticle(root, { input: { id } }, { user }) {
             throw new Error("Article not found");
         }
 
-        console.log(article);
-
         await User.findByIdAndUpdate(user, {
             $addToSet: { "favorites.articles": article.id }
         });
