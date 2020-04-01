@@ -10,7 +10,7 @@ async function signInUser(root, args) {
     const SignInUserPayload = { errors: [], token: null, viewer: null };
 
     try {
-        const user = await User.findOne({ email }).lean();
+        const user = await User.findOne({ email });
 
         if (!user) {
             throw new AuthenticationError("unauthorized");
@@ -26,16 +26,11 @@ async function signInUser(root, args) {
 
         const token = await createJWT(user);
 
-        const { _id, ...restOfUser } = user;
-
         return {
             ...SignInUserPayload,
             token,
             viewer: {
-                user: {
-                    id: user._id,
-                    ...restOfUser
-                }
+                user
             }
         };
     } catch ({ message, stack }) {

@@ -1,8 +1,8 @@
 const { User } = require("../../../../models/index.js");
 
-async function favoritesCount({ id, _id }) {
+async function favoritesCount({ id }) {
     const count = await User.countDocuments({
-        "favorites.articles": id || _id
+        "favorites.articles": id
     });
 
     return count;

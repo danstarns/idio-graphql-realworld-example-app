@@ -2,7 +2,7 @@ const { User } = require("../../../../models/index.js");
 
 async function followUser(root, { input: { id } }, { user: requester }) {
     try {
-        const user = await User.findById(id).lean();
+        const user = await User.findById(id);
 
         if (!user) {
             throw new Error(/* user not found */);
@@ -14,7 +14,7 @@ async function followUser(root, { input: { id } }, { user: requester }) {
                 $addToSet: { following: id }
             },
             { new: true }
-        ).lean();
+        );
 
         return {
             user

@@ -7,14 +7,14 @@ async function updateUser(root, { input }) {
     try {
         const existing = await User.findOne({
             username: input.username
-        }).lean();
+        });
 
         if (input.password) {
             input.password = await hashPassword(input.password);
         }
 
         const updated = await User.findByIdAndUpdate(
-            existing._id,
+            existing.id,
             {
                 $set: input
             },

@@ -2,12 +2,20 @@ const DataLoader = require("dataloader");
 const { Comment } = require("../../../../models/index.js");
 
 const commentsLoader = new DataLoader(async articleIds => {
-    const comments = await Comment.find({
-        article: { $in: articleIds.map(String) }
-    }).lean();
+    articleIds = articleIds.map(id => {
+        if (id.toString) {
+            return id.toString();
+        }
 
-    return articleIds.map(_id =>
-        comments.filter(x => String(x.article) === String(_id))
+        return id;
+    });
+
+    const comments = await Comment.find({
+        article: { $in: articleIds }
+    });
+
+    return articleIds.map(id =>
+        comments.filter(x => x.article.toString() === id)
     );
 });
 

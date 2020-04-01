@@ -1,5 +1,5 @@
-function slug({ title, _id, id }) {
-    return `${title}-${_id || id}`;
+function slug({ title, id }) {
+    return `${title}-${id}`;
 }
 
 module.exports = slug;

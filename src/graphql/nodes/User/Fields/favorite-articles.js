@@ -6,7 +6,7 @@ async function favoriteArticles(
     { first, after },
     { injections: { execute } }
 ) {
-    const user = await User.findById(root._id);
+    const user = await User.findById(root.id);
 
     const { data, errors } = await execute(
         gql`
@@ -43,7 +43,7 @@ async function favoriteArticles(
     `,
         {
             variables: { ids: user.favorites.articles.map(x => x.toString()) },
-            context: { user: user._id.toString() }
+            context: { user: user.id }
         }
     );
 

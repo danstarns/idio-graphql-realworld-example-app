@@ -13,8 +13,20 @@ const Article = new mongoose.Schema(
         tagList: [String],
         title: { type: String, required: true }
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+        toObject: {
+            virtuals: true
+        },
+        toJSON: {
+            virtuals: true
+        }
+    }
 );
+
+Article.virtual("id").get(function getId() {
+    return this._id.toString();
+});
 
 Article.plugin(mongoosePaginate);
 

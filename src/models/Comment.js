@@ -11,8 +11,20 @@ const Comment = new mongoose.Schema(
         author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         body: { type: String, required: true }
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+        toObject: {
+            virtuals: true
+        },
+        toJSON: {
+            virtuals: true
+        }
+    }
 );
+
+Comment.virtual("id").get(function getId() {
+    return this._id.toString();
+});
 
 Comment.plugin(mongoosePaginate);
 

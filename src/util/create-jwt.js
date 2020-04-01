@@ -5,7 +5,7 @@ function createJWT(user) {
     return new Promise((resolve, reject) => {
         jwt.sign(
             {
-                data: { sub: user._id }
+                data: { sub: user.id }
             },
             SECRET,
             (err, token) => {

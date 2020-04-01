@@ -34,7 +34,7 @@ async function articles(root, { first, after }, { injections: { execute } }) {
             }
         }
     `,
-        { context: { user: root._id } }
+        { context: { user: root.id } }
     );
 
     if (errors && errors.length) {

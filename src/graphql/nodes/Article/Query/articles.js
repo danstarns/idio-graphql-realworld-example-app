@@ -14,7 +14,7 @@ async function articles(
     }
 
     if (forUser) {
-        query.author = user._id;
+        query.author = user.id;
     }
 
     if (feed) {
@@ -38,7 +38,7 @@ async function articles(
 
     return {
         edges: docs.map(doc => ({
-            cursor: doc._id,
+            cursor: doc.id,
             node: doc
         })),
         pageInfo: {

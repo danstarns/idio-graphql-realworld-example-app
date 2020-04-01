@@ -2,15 +2,15 @@ const { User } = require("../../../../models/index.js");
 
 async function unfollowUser(root, { input: { id } }, { user: requester }) {
     try {
-        const user = await User.findById(id).lean();
+        const user = await User.findById(id);
 
         if (!user) {
-            throw new Error(/* user not found */);
+            throw new Error("User not found");
         }
 
         await User.findByIdAndUpdate(requester, {
             $pull: { following: id }
-        }).lean();
+        });
 
         return {
             user

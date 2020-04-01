@@ -1,7 +1,7 @@
 const { User } = require("../../../../models/index.js");
 
 async function followedByViewer(root, args, { user: userId }) {
-    const user = await User.findById(userId).lean();
+    const user = await User.findById(userId);
 
     if (!user) {
         return false;
@@ -9,7 +9,7 @@ async function followedByViewer(root, args, { user: userId }) {
 
     const userFollowers = user.following.map(x => x.toString());
 
-    if (userFollowers.includes(root._id.toString())) {
+    if (userFollowers.includes(root.id)) {
         return true;
     }
 

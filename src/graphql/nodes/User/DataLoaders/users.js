@@ -2,11 +2,19 @@ const DataLoader = require("dataloader");
 const { User } = require("../../../../models/index.js");
 
 const usersLoader = new DataLoader(async userIds => {
-    const users = await User.find({
-        _id: { $in: userIds.map(String) }
-    }).lean();
+    userIds = userIds.map(id => {
+        if (id.toString) {
+            return id.toString();
+        }
 
-    return userIds.map(_id => users.find(x => String(x._id) === String(_id)));
+        return id;
+    });
+
+    const users = await User.find({
+        _id: { $in: userIds }
+    });
+
+    return userIds.map(id => users.find(x => x.id.toString() === id));
 });
 
 module.exports = usersLoader;

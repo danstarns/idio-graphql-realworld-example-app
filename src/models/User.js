@@ -21,8 +21,20 @@ const User = new mongoose.Schema(
             articles: { type: [mongoose.Schema.Types.ObjectId], ref: "Article" }
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+        toObject: {
+            virtuals: true
+        },
+        toJSON: {
+            virtuals: true
+        }
+    }
 );
+
+User.virtual("id").get(function getId() {
+    return this._id.toString();
+});
 
 User.plugin(mongoosePaginate);
 

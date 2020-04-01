@@ -2,14 +2,14 @@ const { Article, User } = require("../../../../models/index.js");
 
 async function unfavoriteArticle(root, { input: { id } }, { user }) {
     try {
-        const article = await Article.findById(id).lean();
+        const article = await Article.findById(id);
 
         if (!article) {
-            throw new Error(/* article: null */);
+            throw new Error("Article not found");
         }
 
         await User.findByIdAndUpdate(user, {
-            $pull: { "favorites.articles": article._id }
+            $pull: { "favorites.articles": article.id }
         });
 
         return {
