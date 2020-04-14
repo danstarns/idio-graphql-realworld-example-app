@@ -10,11 +10,15 @@ const { PORT, NODE_ENV } = require("../config.js");
 const appliances = require("./appliances/index.js");
 const { decodeJWT } = require("../util/index.js");
 
-const { typeDefs, resolvers } = combineNodes(nodes, appliances);
+const { typeDefs, resolvers, schemaDirectives } = combineNodes(
+    nodes,
+    appliances
+);
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    schemaDirectives,
     playground: NODE_ENV === "develop",
     context: async ({ req, res }) => {
         const authorization = req.header("authorization");

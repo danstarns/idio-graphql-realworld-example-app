@@ -4,11 +4,16 @@ const { ApolloServer } = require("apollo-server-express");
 const nodes = require("../src/graphql/nodes/index.js");
 const appliances = require("../src/graphql/appliances/index.js");
 
-const { schema } = combineNodes(nodes, appliances);
+const { typeDefs, resolvers, schemaDirectives } = combineNodes(
+    nodes,
+    appliances
+);
 
 function graphql({ user } = {}) {
     const server = new ApolloServer({
-        schema,
+        typeDefs,
+        resolvers,
+        schemaDirectives,
         context: () => ({ user })
     });
 
