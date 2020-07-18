@@ -21,7 +21,7 @@ This codebase was created to demonstrate a Node.js server built with [**idio-gra
 > All PR's are welcome
 
 1. [Eslint](https://eslint.org/) => `./eslintrc`
-2. [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) => `PR|>master`
+2. `PR|>master`
 3. [Tests](#testing)
 
 # Getting started
